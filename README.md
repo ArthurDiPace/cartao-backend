@@ -18,6 +18,11 @@ Instale as dependências do sistema
 pip install -r requirements.txt
 ```
 
+Crie seu Superuser
+```shell
+python manage.py createsuperuser
+```
+
 ## Desenvolvimento
 
 Para criar alguma migração, utilize o comando abaixo
