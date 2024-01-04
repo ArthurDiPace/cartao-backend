@@ -39,34 +39,41 @@ Para rodar o servidor de desenvolvimento você pode usar o seguinte comando
 ```shell
 python manage.py runserver
 ```
-## CONTRATO DA API
-Endpoints Disponíveis:
-Autenticação:
+# CONTRATO DA API
 
-POST /api/token/: Endpoint para obter um token de acesso (JWT).
-POST /api/token/refresh/: Endpoint para atualizar o token de acesso.
-GET /api/user-info/: Endpoint para obter informações do usuário autenticado.
-Cartões:
+## Endpoints Disponíveis
 
-GET /api/cartoes/: Endpoint para listar todos os cartões disponíveis.
-POST /api/cartoes/: Endpoint para criar um novo cartão.
-GET /api/cartoes/{id}/: Endpoint para detalhar um cartão específico.
-PUT /api/cartoes/{id}/: Endpoint para atualizar um cartão existente.
-DELETE /api/cartoes/{id}/: Endpoint para excluir um cartão existente.
-Operações Específicas:
+### Autenticação
+- `POST /api/token/`: Obter um token de acesso (JWT).
+- `POST /api/token/refresh/`: Atualizar o token de acesso.
+- `GET /api/user-info/`: Obter informações do usuário autenticado.
 
-POST /api/cartoes/file/: Endpoint para realizar operações de upload de arquivo relacionadas aos cartões.
-GET /api/cartoes/consulta_numero/: Endpoint para realizar consulta com base no número do cartão.
-Parâmetros:
-POST /api/cartoes/ (criar um novo cartão):
+### Cartões
+- `GET /api/cartoes/`: Listar todos os cartões disponíveis.
+- `POST /api/cartoes/`: Criar um novo cartão.
+- `GET /api/cartoes/{id}/`: Detalhar um cartão específico.
+- `PUT /api/cartoes/{id}/`: Atualizar um cartão existente.
+- `DELETE /api/cartoes/{id}/`: Excluir um cartão existente.
 
-Corpo da requisição deve conter os dados necessários para criar um cartão (ex: número do cartão, nome do titular, data de validade, etc).
-PUT /api/cartoes/{id}/ (atualizar um cartão existente):
+### Operações Específicas
+- `POST /api/cartoes/file/`: Realizar operações de upload de arquivo relacionadas aos cartões.
+- `GET /api/cartoes/consulta_numero/`: Realizar consulta com base no número do cartão.
 
-Corpo da requisição deve conter os dados a serem atualizados do cartão (ex: número do cartão, nome do titular, data de validade, etc).
-Autenticação:
-Para acessar endpoints que requerem autenticação (exceto /api/token/), é necessário incluir o token JWT no cabeçalho Authorization.
-Observações:
-Certifique-se de estar autenticado para acessar endpoints que exigem autenticação.
-Para operações específicas como upload de arquivo ou consulta por número de cartão, utilize os endpoints correspondentes com os métodos HTTP corretos (POST e GET, respectivamente).
-Este contrato da API detalha os endpoints disponíveis, os métodos HTTP permitidos, os parâmetros necessários e outras informações importantes para interagir com a API de Cartões. Certifique-se de seguir as convenções e padrões do Django REST Framework ao realizar solicitações para cada endpoint.
+## Parâmetros
+
+- `POST /api/cartoes/` (criar um novo cartão):
+  - Corpo da requisição deve conter os dados necessários para criar um cartão (ex: número do cartão, nome do titular, data de validade, etc).
+
+- `PUT /api/cartoes/{id}/` (atualizar um cartão existente):
+  - Corpo da requisição deve conter os dados a serem atualizados do cartão (ex: número do cartão, nome do titular, data de validade, etc).
+
+## Autenticação
+
+- Para acessar endpoints que requerem autenticação (exceto `/api/token/`), é necessário incluir o token JWT no cabeçalho `Authorization`.
+
+## Observações
+
+- Certifique-se de estar autenticado para acessar endpoints que exigem autenticação.
+- Para operações específicas como upload de arquivo ou consulta por número de cartão, utilize os endpoints correspondentes com os métodos HTTP corretos (POST e GET, respectivamente).
+
+Este arquivo README fornece informações sobre os requisitos, instalação e desenvolvimento do projeto, além de detalhar o contrato da API de Cartões. Utilize as instruções para configurar o ambiente, desenvolver e interagir com a API de acordo com as especificações fornecidas.
