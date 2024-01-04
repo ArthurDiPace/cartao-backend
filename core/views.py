@@ -20,11 +20,29 @@ class CartoesViewSet(LoggingMixin, viewsets.ModelViewSet):
     serializer_class = CartoesSerializer
     permission_classes = [DjangoModelPermissions]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
+    filterset_fields = {'nome': ['icontains'], 'numero': ['icontains']}
+    search_fields = ['nome__icontains', 'numero__icontains']
+    ordering = ['id']
+
+    def get_queryset(self):
+        queryset = Cartoes.objects.filter()  
+        nome = self.request.query_params.get('nome')
+        numero = self.request.query_params.get('numero')
+        
+
+        if nome is not None:
+            queryset = queryset.filter(nome__icontains=nome)
+        
+        if numero is not None :
+            queryset = queryset.filter(numero__icontains=numero)
+            
+        queryset = queryset.order_by('nome', 'numero')
+        return queryset
     
     @action(detail=False, methods=['post'])
     def file(self, request):
         file_content = request.FILES.get('file')  # Lembrando que o arquivo enviando pelo front ou na requisição deve ser "file" utilizei o insonmia para envio 
-        
+    
         if file_content:
             lines = file_content.read().decode().split("\n")
             
